@@ -1,0 +1,44 @@
+﻿Function Login()
+
+Browser("Demo Web Shop").Page("Demo Web Shop").Link("Log in").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Login").WebEdit("Email").fnSet "UserID"
+Browser("Demo Web Shop").Page("Demo Web Shop. Login").WebEdit("Password").fnSet "Password"
+Browser("Demo Web Shop").Page("Demo Web Shop. Login").WebButton("Log in").Click
+
+End Function
+
+Function MobileAddToCart()
+
+	Browser("Demo Web Shop").Page("Demo Web Shop").Link("Cell phones").Click
+	Browser("Demo Web Shop").Page("Demo Web Shop. Cell phones").WebButton("Add to cart").Click
+	If Browser("Demo Web Shop").Page("Demo Web Shop. Cell phones").Link("shopping cart").Exist Then
+	Browser("Demo Web Shop").Page("Demo Web Shop. Shopping").Image("Tricentis Demo Web Shop").Click
+	End If
+
+End Function
+
+Function CODorder()
+	 Window("Google Chrome").InsightObject("InsightObject_3").Click
+
+	'Browser("Demo Web Shop").Page("Demo Web Shop").Link("Shopping cart (1)").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Shopping").WebCheckBox("termsofservice").Set "ON"
+Browser("Demo Web Shop").Page("Demo Web Shop. Shopping").WebButton("Checkout").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebButton("Continue").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebCheckBox("PickUpInStore").Set "ON"
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebButton("Continue_2").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebRadioGroup("paymentmethod").Select "Payments.CashOnDelivery"
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebButton("Continue_3").Click
+Window("Google Chrome").InsightObject("InsightObject").Click
+
+'Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebButton("Continue_4").Click
+
+If Browser("Demo Web Shop").Page("Demo Web Shop. Order Details").WebElement("In-Store Pickup").Exist Then
+'Window("Google Chrome").InsightObject("InsightObject_2").Click
+Browser("Demo Web Shop").Page("Demo Web Shop. Checkout").WebButton("Confirm").Click
+End If
+
+End Function
+
+Function Logout()
+	Browser("Demo Web Shop").Page("Demo Web Shop").Link("Log out").Click
+End Function
